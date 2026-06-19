@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initCounters();
   initForm();
+  initFaq();
 });
 
 function initHeroCanvas() {
@@ -230,21 +231,73 @@ function animateCounter(el) {
 }
 
 function initForm() {
-  const form = document.getElementById('demo-form');
+  const form = document.getElementById('contact-form');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  const isFormspreeConfigured = !form.action.includes('YOUR_FORM_ID');
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalHTML = submitBtn.innerHTML;
-    submitBtn.innerHTML = '✓ Demo Requested!';
-    submitBtn.style.background = '#2A9D8F';
+
+    submitBtn.innerHTML = 'Sending…';
     submitBtn.disabled = true;
-    setTimeout(() => {
-      submitBtn.innerHTML = originalHTML;
-      submitBtn.style.background = '';
+
+    if (!isFormspreeConfigured) {
+      // Formspree not yet configured — show friendly message
+      submitBtn.innerHTML = '✓ Message received!';
+      submitBtn.style.background = '#2A9D8F';
+      setTimeout(() => {
+        submitBtn.innerHTML = originalHTML;
+        submitBtn.style.background = '';
+        submitBtn.disabled = false;
+        form.reset();
+      }, 3000);
+      return;
+    }
+
+    try {
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+
+      if (response.ok) {
+        submitBtn.innerHTML = '✓ Message sent!';
+        submitBtn.style.background = '#2A9D8F';
+        form.reset();
+        setTimeout(() => {
+          submitBtn.innerHTML = originalHTML;
+          submitBtn.style.background = '';
+          submitBtn.disabled = false;
+        }, 4000);
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch {
+      submitBtn.innerHTML = 'Try again';
+      submitBtn.style.background = '#E63946';
       submitBtn.disabled = false;
-      form.reset();
-    }, 3000);
+    }
+  });
+}
+
+function initFaq() {
+  document.querySelectorAll('.faq__question').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      document.querySelectorAll('.faq__question').forEach((b) => {
+        b.setAttribute('aria-expanded', 'false');
+        b.nextElementSibling.classList.remove('is-open');
+      });
+      if (!isOpen) {
+        btn.setAttribute('aria-expanded', 'true');
+        answer.classList.add('is-open');
+      }
+    });
   });
 }
