@@ -610,6 +610,7 @@ ul, ol { list-style: none; }
 
 /* ── Story ── */
 .story__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4xl); align-items: center; }
+.story__content--centered { max-width: 680px; margin: 0 auto; text-align: center; }
 .story__eyebrow { font-size: var(--font-size-sm); font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: var(--space-lg); }
 .story__title { font-size: var(--font-size-3xl); font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: var(--space-xl); }
 .story__text { font-size: var(--font-size-lg); color: var(--color-text-secondary); line-height: 1.8; margin-bottom: var(--space-lg); }
