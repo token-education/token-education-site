@@ -17,14 +17,14 @@ function initHeroCanvas() {
   let mouse = { x: null, y: null };
 
   const CONFIG = {
-    nodeCount: 160,
-    connectionDistance: 140,
+    nodeCount: 260,
+    connectionDistance: 130,
     nodeSpeed: 0.35,
-    nodeMinRadius: 1.5,
-    nodeMaxRadius: 3.5,
+    nodeMinRadius: 1,
+    nodeMaxRadius: 4,
     accentColor: { r: 230, g: 57, b: 70 },
     nodeColor: { r: 160, g: 160, b: 184 },
-    lineOpacity: 0.14,
+    lineOpacity: 0.13,
     mouseRadius: 180,
   };
 
