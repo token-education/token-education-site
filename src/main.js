@@ -17,15 +17,15 @@ function initHeroCanvas() {
   let mouse = { x: null, y: null };
 
   const CONFIG = {
-    nodeCount: 80,
-    connectionDistance: 150,
-    nodeSpeed: 0.3,
+    nodeCount: 160,
+    connectionDistance: 140,
+    nodeSpeed: 0.35,
     nodeMinRadius: 1.5,
-    nodeMaxRadius: 3,
+    nodeMaxRadius: 3.5,
     accentColor: { r: 230, g: 57, b: 70 },
     nodeColor: { r: 160, g: 160, b: 184 },
-    lineOpacity: 0.12,
-    mouseRadius: 200,
+    lineOpacity: 0.14,
+    mouseRadius: 180,
   };
 
   function resize() {
@@ -43,7 +43,7 @@ function initHeroCanvas() {
         vx: (Math.random() - 0.5) * CONFIG.nodeSpeed,
         vy: (Math.random() - 0.5) * CONFIG.nodeSpeed,
         radius: CONFIG.nodeMinRadius + Math.random() * (CONFIG.nodeMaxRadius - CONFIG.nodeMinRadius),
-        isAccent: Math.random() < 0.15,
+        isAccent: Math.random() < 0.28,
         pulsePhase: Math.random() * Math.PI * 2,
       });
     }
@@ -114,15 +114,18 @@ function initHeroCanvas() {
         const dx = node.x - mouse.x;
         const dy = node.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          const force = (100 - dist) / 100 * 0.02;
+        if (dist < 160 && dist > 0) {
+          const force = Math.pow((160 - dist) / 160, 2) * 0.18;
           node.vx += dx / dist * force;
           node.vy += dy / dist * force;
         }
       }
 
       const speed = Math.sqrt(node.vx * node.vx + node.vy * node.vy);
-      if (speed > CONFIG.nodeSpeed * 2) { node.vx *= 0.98; node.vy *= 0.98; }
+      const maxSpeed = CONFIG.nodeSpeed * 5;
+      if (speed > maxSpeed) { node.vx = (node.vx / speed) * maxSpeed; node.vy = (node.vy / speed) * maxSpeed; }
+      node.vx *= 0.995;
+      node.vy *= 0.995;
     }
   }
 
