@@ -303,6 +303,20 @@ ul, ol { list-style: none; }
 .btn--primary:hover { background: var(--color-accent-hover); transform: translateY(-2px); box-shadow: var(--shadow-glow); }
 .btn--secondary { background: transparent; color: var(--color-text-primary); border: 1px solid var(--color-border-hover); }
 .btn--secondary:hover { border-color: var(--color-accent); color: var(--color-accent); transform: translateY(-2px); }
+
+/* Hero secondary button — solid white so it reads on dark canvas */
+.hero .btn--secondary {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0A0A0F;
+  border-color: transparent;
+  font-weight: 700;
+}
+.hero .btn--secondary:hover {
+  background: #fff;
+  color: var(--color-accent);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
 .btn--large { padding: 18px 40px; font-size: var(--font-size-lg); }
 .btn__arrow { transition: transform var(--transition-fast); }
 .btn:hover .btn__arrow { transform: translateX(4px); }
