@@ -854,6 +854,10 @@ ul, ol { list-style: none; }
 #solutions.section--light .neo-card {
   background: var(--color-read-bg);
 }
+#solutions .section-header__title {
+  color: var(--color-accent);
+  font-size: var(--font-size-4xl);
+}
 
 .positioning.section--light {
   background: var(--color-read-bg);
