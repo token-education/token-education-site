@@ -846,6 +846,15 @@ ul, ol { list-style: none; }
 .section--light {
   background: var(--color-read-bg);
 }
+
+/* Solutions — deeper tinted base so cards read as lighter surface on top */
+#solutions.section--light {
+  background: var(--color-read-panel);
+}
+#solutions.section--light .neo-card {
+  background: var(--color-read-bg);
+}
+
 .positioning.section--light {
   background: var(--color-read-bg);
   border-top-color: var(--color-read-border);
