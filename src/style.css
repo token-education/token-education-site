@@ -921,17 +921,33 @@ ul, ol { list-style: none; }
 /* FAQ */
 .section--light .faq__list {
   border-color: var(--color-read-border);
+  box-shadow: 0 4px 24px rgba(32, 50, 74, 0.07);
 }
 .section--light .faq__item {
   border-bottom-color: var(--color-read-border);
 }
 .section--light .faq__question {
-  background: var(--color-read-panel);
+  background: var(--color-read-bg);
   color: var(--color-read-text);
+  font-size: var(--font-size-base);
+  padding: var(--space-xl) var(--space-2xl);
 }
-.section--light .faq__question:hover { background: var(--color-read-panel-2); }
-.section--light .faq__icon { color: var(--color-read-text-faint); }
-.section--light .faq__answer { background: var(--color-read-bg); }
+.section--light .faq__question:hover {
+  background: var(--color-read-panel);
+  color: var(--color-accent);
+}
+.section--light .faq__question[aria-expanded="true"] {
+  background: var(--color-read-panel);
+}
+.section--light .faq__icon {
+  color: var(--color-accent);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+.section--light .faq__answer {
+  background: var(--color-read-panel);
+  border-left: 3px solid var(--color-accent);
+}
 .section--light .faq__answer p { color: var(--color-read-text-soft); }
 
 /* Story / Mission */
